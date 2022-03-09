@@ -1,0 +1,27 @@
+{
+  "name": "pippitrack-twitch-panel",
+  "version": "1.0.0",
+  "description": "Display top plays (and more ?)",
+  "main": "./server/index.js",
+  "scripts": {
+    "start": "node ./server/index.js",
+    "server": "node ./server/index.js",
+    "client": "serve --ssl-cert ./localhost.pem --ssl-key ./localhost-key.pem -p 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KeziahMoselle/pippitrack-twitch-panel.git"
+  },
+  "author": "Keziah MOSELLE",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KeziahMoselle/pippitrack-twitch-panel/issues"
+  },
+  "homepage": "https://github.com/KeziahMoselle/pippitrack-twitch-panel#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "fastify": "^3.27.3",
+    "osu-api-extended": "^2.0.11",
+    "redis": "^4.0.4"
+  }
+}
