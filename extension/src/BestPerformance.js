@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getBestPerformance } from './libs/axios'
+import Score from './Score'
 
 export default function BestPerformance() {
   const [bestPerformance, setBestPerformance] = useState([]);
@@ -18,8 +19,14 @@ export default function BestPerformance() {
   }
 
   return (
-    <div>
-      Test
+    <div className="flex flex-col gap-y-1">
+      {bestPerformance.length === 0 && (
+        <div>Loading...</div>
+      )}
+
+      {bestPerformance.length > 0 && bestPerformance.map(performance => (
+        <Score score={performance} />
+      ))}
     </div>
   )
 }
