@@ -21,6 +21,7 @@
   "dependencies": {
     "dotenv": "^16.0.0",
     "fastify": "^3.27.3",
+    "fastify-cors": "^6.0.3",
     "osu-api-extended": "^2.0.11",
     "redis": "^4.0.4"
   }

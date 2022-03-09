@@ -2,6 +2,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 const fastify = require('fastify')
 const topPlays = require('./topPlays')
+const fastifyCors = require('fastify-cors')
 
 class Api {
 
@@ -13,6 +14,11 @@ class Api {
 
   constructor (port) {
     this.port = port
+
+    this.server.register(fastifyCors, {
+      origin: "*",
+      methods: ["GET"]
+    })
 
     this.routes()
   }
