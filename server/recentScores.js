@@ -4,13 +4,13 @@ const redis = require('./redis')
 
 
 /**
- * Send top plays
+ * Send recent scores
  *
  * @param {fastify.FastifyRequest} request
  * @param {fastify.FastifyReply} reply
  * @return {*}
  */
-async function topPlays(request, reply) {
+async function recentScores(request, reply) {
   try {
     const { id, mode } = request.query
 

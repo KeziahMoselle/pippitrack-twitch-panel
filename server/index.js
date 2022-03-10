@@ -3,6 +3,7 @@ dotenv.config()
 const fastify = require('fastify')
 const topPlays = require('./topPlays')
 const fastifyCors = require('fastify-cors')
+const recentScores = require('./recentScores')
 
 class Api {
 
@@ -30,11 +31,22 @@ class Api {
       url: '/v1/top_plays',
       schema: {
         querystring: {
-          username: { type: 'string' },
+          id: { type: 'string' },
           mode: { type: 'string' },
         }
       },
       handler: topPlays
+    })
+    this.server.route({
+      method: 'GET',
+      url: '/v1/recent_scores',
+      schema: {
+        querystring: {
+          id: { type: 'string' },
+          mode: { type: 'string' },
+        }
+      },
+      handler: recentScores
     })
   }
 
