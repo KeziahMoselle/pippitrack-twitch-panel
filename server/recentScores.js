@@ -42,4 +42,4 @@ async function recentScores(request, reply) {
   }
 }
 
-module.exports = topPlays
+module.exports = recentScores
