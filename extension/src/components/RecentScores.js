@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getRecentScores } from './libs/axios'
+import { getRecentScores } from '../libs/axios'
 import Score from './Score'
 
 export default function RecentScores() {

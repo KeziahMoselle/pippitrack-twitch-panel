@@ -63,5 +63,5 @@ body::-webkit-scrollbar-thumb {
 }
 
 [data-reach-tab-panels] {
-  padding: 2rem;
+  @apply py-8 px-4;
 }

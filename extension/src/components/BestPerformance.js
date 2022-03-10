@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getBestPerformance } from './libs/axios'
+import { getBestPerformance } from '../libs/axios'
 import Score from './Score'
 
 export default function BestPerformance() {
