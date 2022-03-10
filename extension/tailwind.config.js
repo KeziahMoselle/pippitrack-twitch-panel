@@ -11,13 +11,21 @@ module.exports = {
       },
       purple: {
         DEFAULT: '#b3306b',
-        light: '#b7b1e5'
+        accent: '#FF66AB',
+        light: '#b7b1e5',
+        detail: '#d194af',
       },
       yellow: {
         DEFAULT: '#ea0'
       }
     },
-    extend: {},
+    extend: {
+      zIndex: {
+        under: '-1',
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@whiterussianstudio/tailwind-easing'),
+  ],
 }
