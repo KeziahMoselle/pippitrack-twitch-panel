@@ -20,7 +20,7 @@ export default function RecentScores({ config }) {
   return (
     <div className="flex flex-col gap-y-1">
       {isLoading && (
-        <div class="flex justify-center">
+        <div className="flex justify-center">
           <div className="loading" />
         </div>
       )}
