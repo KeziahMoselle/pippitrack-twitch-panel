@@ -11,10 +11,7 @@ export default function RecentScores({ config }) {
   }, [])
 
   async function getData() {
-    const performance = await getRecentScores({
-      id: config.id,
-      mode: config.mode,
-    })
+    const performance = await getRecentScores({...config})
 
     setScores(performance)
     setIsLoading(false)

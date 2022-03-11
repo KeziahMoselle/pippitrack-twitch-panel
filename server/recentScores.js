@@ -12,7 +12,7 @@ const redis = require('./redis')
  */
 async function recentScores(request, reply) {
   try {
-    const { id, mode } = request.query
+    const { id, mode, recent_limit } = request.query
 
     const key = `recentScores:${id}:${mode}`
 
@@ -25,8 +25,8 @@ async function recentScores(request, reply) {
     const res = await v2.login(process.env.OSU_CLIENT_ID, process.env.OSU_CLIENT_SECRET)
 
     const response = await v2.scores.users.recent(id, {
-      mode,
-      limit: 5,
+      mode: mode || 'osu',
+      limit: Number(recent_limit) || 15,
     })
 
     redis.set(key, JSON.stringify(response), {

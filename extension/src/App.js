@@ -7,14 +7,10 @@ function App() {
   const [config, setConfig] = useState(null)
 
   useEffect(() => {
-    console.log('Getting config...')
     window.Twitch.ext.configuration.onChanged(() => {
-      console.log('onChanged')
       if (window.Twitch.ext.configuration.broadcaster) {
         try {
           const config = JSON.parse(window.Twitch.ext.configuration.broadcaster.content)
-
-          console.log('config', config)
 
           if (typeof config === 'object') {
             setConfig(config)

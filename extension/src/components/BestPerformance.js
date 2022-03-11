@@ -11,10 +11,7 @@ export default function BestPerformance({ config }) {
   }, [])
 
   async function getData() {
-    const performance = await getBestPerformance({
-      id: config.id,
-      mode: config.mode,
-    })
+    const performance = await getBestPerformance({...config})
 
     setBestPerformance(performance)
     setIsLoading(false)

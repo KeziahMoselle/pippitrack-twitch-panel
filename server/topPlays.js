@@ -11,7 +11,7 @@ const redis = require('./redis')
  */
 async function topPlays(request, reply) {
   try {
-    const { id, mode } = request.query
+    const { id, mode, best_limit } = request.query
 
     const key = `topPlays:${id}:${mode}`
 
@@ -24,8 +24,8 @@ async function topPlays(request, reply) {
     const res = await v2.login(process.env.OSU_CLIENT_ID, process.env.OSU_CLIENT_SECRET)
 
     const response = await v2.scores.users.best(id, {
-      mode,
-      limit: 100
+      mode: mode || 'osu',
+      limit: Number(best_limit) || 15,
     })
 
     redis.set(key, JSON.stringify(response), {

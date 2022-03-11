@@ -33,6 +33,7 @@ class Api {
         querystring: {
           id: { type: 'string' },
           mode: { type: 'string' },
+          best_limit: { type: 'number' },
         }
       },
       handler: topPlays
@@ -44,6 +45,7 @@ class Api {
         querystring: {
           id: { type: 'string' },
           mode: { type: 'string' },
+          recent_limit: { type: 'number' }
         }
       },
       handler: recentScores
