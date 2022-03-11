@@ -22,9 +22,22 @@
           <option value="mania">Mania</option>
           <option value="taiko">Taiko</option>
         </select>
+        <label for="best_limit">Best performance limit</label>
+        <select name="best_limit" id="best_limit">
+          <option selected value="15">15</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+        <label for="recent_limit">Recent scores limit</label>
+        <select name="recent_limit" id="recent_limit">
+          <option selected value="15">15</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
         <input type="submit" value="Save" />
       </form>
       <p id="message"></p>
+      <p>After saving it may take up to 5 minutes to update on the Twitch panel.</p>
     </div>
 
 
@@ -54,6 +67,23 @@
         margin: 0 auto;
       }
 
+      label {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      input, select {
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      input::placeholder {
+        opacity: 0.5;
+      }
+
       input[type="submit"] {
         text-transform: uppercase;
         padding: 0.5rem 1rem;
@@ -64,7 +94,7 @@
         font-weight: 600;
         font-size: 18px;
         border-radius: 10px;
-        margin-top: 8px;
+        margin-top: 2rem;
       }
 
       .accent {
@@ -73,6 +103,10 @@
 
       .small {
         font-size: 14px;
+      }
+
+      p {
+        text-align: center;
       }
     </style>
 
