@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getRecentScores } from '../libs/axios'
 import Score from './Score'
 
-export default function RecentScores() {
+export default function RecentScores({ config }) {
   const [scores, setScores] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
 
@@ -12,8 +12,8 @@ export default function RecentScores() {
 
   async function getData() {
     const performance = await getRecentScores({
-      id: '4431069',
-      mode: 'osu',
+      id: config.id,
+      mode: config.mode,
     })
 
     setScores(performance)

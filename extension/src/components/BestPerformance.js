@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getBestPerformance } from '../libs/axios'
 import Score from './Score'
 
-export default function BestPerformance() {
+export default function BestPerformance({ config }) {
   const [bestPerformance, setBestPerformance] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
 
@@ -12,8 +12,8 @@ export default function BestPerformance() {
 
   async function getData() {
     const performance = await getBestPerformance({
-      id: '5914915',
-      mode: 'osu',
+      id: config.id,
+      mode: config.mode,
     })
 
     setBestPerformance(performance)

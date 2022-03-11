@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <form>
+        <label for="id">Your osu! id</label>
+        <input type="number" name="id" id="id" placeholder="5914915" />
+        <p class="small">
+          Your osu! id is the number part of your profile URL (here in pink).
+          https://osu.ppy.sh/users/<span class="accent">5914915</span>
+        </p>
+        <label for="mode">Mode</label>
+        <select name="mode" id="mode">
+          <option selected value="osu">Standard</option>
+          <option value="fruits">Catch The Beat</option>
+          <option value="mania">Mania</option>
+          <option value="taiko">Taiko</option>
+        </select>
+        <input type="submit" value="Save" />
+      </form>
+      <p id="message"></p>
+    </div>
+
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&display=swap');
+
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        background-color: #0e0e10;
+        color: white;
+        font-size: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      input[type="submit"] {
+        text-transform: uppercase;
+        padding: 0.5rem 1rem;
+        background-color: #b3306b;
+        color: white;
+        border: none;
+        font-family: 'Exo 2';
+        font-weight: 600;
+        font-size: 18px;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+
+      .accent {
+        color: #FF66AB;
+      }
+
+      .small {
+        font-size: 14px;
+      }
+    </style>
+
+    <script src="./config.js"></script>
+  </body>
+</html>
