@@ -4,9 +4,7 @@
   "description": "Display top plays (and more ?)",
   "main": "./server/index.js",
   "scripts": {
-    "start": "node ./server/index.js",
-    "server": "node ./server/index.js",
-    "client": "serve --ssl-cert ./localhost.pem --ssl-key ./localhost-key.pem -p 8080"
+    "start": "node ./server/index.js"
   },
   "repository": {
     "type": "git",
