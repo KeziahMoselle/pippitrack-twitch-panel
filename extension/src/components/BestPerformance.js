@@ -1,31 +1,23 @@
-import { useEffect, useState } from "react";
-import { getBestPerformance } from '../libs/axios'
+import useSWR from 'swr'
+import { fetcher } from '../libs/axios'
 import Score from './Score'
 
+
 export default function BestPerformance({ config }) {
-  const [bestPerformance, setBestPerformance] = useState([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const qs = new URLSearchParams(config)
+  const { data: bestPerformance, isValidating } = useSWR(`v1/top_plays?${qs}`, fetcher)
 
-  useEffect(() => {
-    getData()
-  }, [])
-
-  async function getData() {
-    const performance = await getBestPerformance({...config})
-
-    setBestPerformance(performance)
-    setIsLoading(false)
+  if (isValidating) {
+    return (
+      <div className="flex justify-center">
+        <div className="loading" />
+      </div>
+    )
   }
 
   return (
     <div className="flex flex-col gap-y-1">
-      {isLoading && (
-        <div className="flex justify-center">
-          <div className="loading" />
-        </div>
-      )}
-
-      {bestPerformance.length === 0 && !isLoading && (
+      {bestPerformance.length === 0 && (
         <div>No top play found.</div>
       )}
 

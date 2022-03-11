@@ -55,7 +55,7 @@ export default function Score({ score }) {
         flex flex-col relative overflow-hidden
         px-4 py-3 bg-black rounded-xl
         transform transition-transform ease-out-cubic z-10
-        hover:scale-110 hover:z-20
+        hover:scale-105 hover:z-20
       ">
       <div className="flex items-center mr-4 mb-2">
         <div className="mr-4">

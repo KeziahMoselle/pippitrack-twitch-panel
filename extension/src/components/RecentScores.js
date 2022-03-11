@@ -1,32 +1,25 @@
-import { useEffect, useState } from "react";
-import { getRecentScores } from '../libs/axios'
+import useSWR from 'swr'
+import { fetcher } from '../libs/axios'
 import Score from './Score'
 
 export default function RecentScores({ config }) {
-  const [scores, setScores] = useState([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const qs = new URLSearchParams(config)
+  const { data: scores, isValidating } = useSWR(`v1/recent_scores?${qs}`, fetcher)
 
-  useEffect(() => {
-    getData()
-  }, [])
-
-  async function getData() {
-    const performance = await getRecentScores({...config})
-
-    setScores(performance)
-    setIsLoading(false)
+  if (isValidating) {
+    return (
+      <div className="flex justify-center">
+        <div className="loading" />
+      </div>
+    )
   }
 
   return (
     <div className="flex flex-col gap-y-1">
-      {isLoading && (
-        <div className="flex justify-center">
-          <div className="loading" />
+      {scores.length === 0 && (
+        <div className="text-center">
+          <p>No recent scores found.</p>
         </div>
-      )}
-
-      {scores.length === 0 && !isLoading && (
-        <div>No recent scores found.</div>
       )}
 
       {scores.length > 0 && scores.map(score => (
