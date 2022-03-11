@@ -57,8 +57,8 @@ export default function Score({ score }) {
         transform transition-transform ease-out-cubic z-10
         hover:scale-110 hover:z-20
       ">
-      <div className="flex items-center mr-4">
-        <div className="mr-4 mb-2">
+      <div className="flex items-center mr-4 mb-2">
+        <div className="mr-4">
           <img
             src={RANK_IMAGES[score.rank]}
             alt={score.rank}
@@ -86,8 +86,10 @@ export default function Score({ score }) {
 
       <div className="flex justify-between items-center font-bold">
         <div className="flex">
-          {score.mods.map(mod => (
+          {/* Splicing here is to avoid too many mods icons (no overflow) */}
+          {[...score.mods].splice(0, 4).map(mod => (
             <img
+              key={mod}
               src={MODS_IMAGES[mod]}
               alt={mod}
               height={28}
@@ -95,6 +97,9 @@ export default function Score({ score }) {
           ))}
         </div>
         <div>
+          <span className="text-xs mr-2 text-white text-opacity-60">
+            ({ Number(score.accuracy * 100).toPrecision(4) }%)
+          </span>
           <span className="text-purple-accent">
             {Math.round(score.pp)}
           </span>
