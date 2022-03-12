@@ -29,8 +29,12 @@ body::-webkit-scrollbar-thumb {
   @apply bg-purple;
 }
 
+.loading-container {
+  @apply fixed z-50 inset-0 flex justify-center items-center bg-black-dark bg-opacity-30;
+}
+
 .loading {
-  @apply absolute top-1/2 transform -translate-y-1/2 h-16 w-16 bg-purple rounded-full transition-transform z-50;
+  @apply h-16 w-16 bg-purple rounded-full transition-transform z-50;
   animation: ripple 0.3s ease-in-out infinite alternate;
 }
 

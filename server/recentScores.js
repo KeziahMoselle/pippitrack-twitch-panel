@@ -30,7 +30,7 @@ async function recentScores(request, reply) {
     })
 
     redis.set(key, JSON.stringify(response), {
-      EX: 30
+      EX: 15
     })
 
     return response
