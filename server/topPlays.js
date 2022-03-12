@@ -13,7 +13,7 @@ async function topPlays(request, reply) {
   try {
     const { id, mode, best_limit } = request.query
 
-    const key = `topPlays:${id}:${mode}`
+    const key = `topPlays:${id}:${mode}:${best_limit}`
 
     const cached = await redis.get(key)
 

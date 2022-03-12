@@ -14,7 +14,7 @@ async function recentScores(request, reply) {
   try {
     const { id, mode, recent_limit } = request.query
 
-    const key = `recentScores:${id}:${mode}`
+    const key = `recentScores:${id}:${mode}:${recent_limit}`
 
     const cached = await redis.get(key)
 
