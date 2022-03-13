@@ -11,7 +11,7 @@ const redis = require('./redis')
  */
 async function topPlays(request, reply) {
   try {
-    const { id, mode, best_limit } = request.query
+    const { id, mode, best_limit = 15 } = request.query
 
     const key = `topPlays:${id}:${mode}:${best_limit}`
 
@@ -27,6 +27,8 @@ async function topPlays(request, reply) {
       mode: mode || 'osu',
       limit: Number(best_limit) || 15,
     })
+
+    console.log(`[${key}]: Fetched ${response.length} scores. (${response?.[0]?.user?.username})`)
 
     redis.set(key, JSON.stringify(response), {
       EX: 60 * 5 // 5 minutes cache
