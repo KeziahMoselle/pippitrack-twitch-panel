@@ -93,7 +93,7 @@ export default function Score({ score }) {
               width={28} />
           ))}
         </div>
-        <div className="flex">
+        <div className="flex items-end">
           <div className="flex items-center text-xxs">
             <span className="mr-1">{score.max_combo}x</span>
             <span className="mr-2 text-white text-opacity-60">
