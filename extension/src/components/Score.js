@@ -1,4 +1,5 @@
 import * as timeago from 'timeago.js'
+import F from '../assets/F.png'
 import D from '../assets/D.png'
 import C from '../assets/C.png'
 import B from '../assets/B.png'
@@ -21,6 +22,7 @@ import SD from '../assets/SD.png'
 import SO from '../assets/SO.png'
 
 const RANK_IMAGES = {
+  F,
   D,
   C,
   B,
