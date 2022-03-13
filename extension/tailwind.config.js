@@ -25,6 +25,9 @@ module.exports = {
     extend: {
       zIndex: {
         under: '-1',
+      },
+      fontSize: {
+        xxs: '10px'
       }
     },
   },

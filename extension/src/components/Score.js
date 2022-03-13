@@ -72,11 +72,6 @@ export default function Score({ score }) {
             <span>{ score.beatmapset.title }{" "}</span>
             <small>by { score.beatmapset.artist }</small>
           </p>
-          {/* <div className="text-xs">
-            <span>{intlNumber.format(score.score)}</span> / <span>{score.max_combo}x</span>
-            {" "}
-            <span>{"{"} {score.statistics.count_300} / {score.statistics.count_100} / {score.statistics.count_50} / {score.statistics.count_miss} {"}"}</span>
-          </div> */}
           <p className="text-xs truncate">
             <span className="text-yellow">
               {score.beatmap.version}
@@ -98,10 +93,13 @@ export default function Score({ score }) {
               width={28} />
           ))}
         </div>
-        <div>
-          <span className="text-xs mr-2 text-white text-opacity-60">
-            ({ Number(score.accuracy * 100).toPrecision(4) }%)
-          </span>
+        <div className="flex">
+          <div className="flex items-center text-xxs">
+            <span className="mr-1">{score.max_combo}x</span>
+            <span className="mr-2 text-white text-opacity-60">
+              ({ Number(score.accuracy * 100).toPrecision(4) }%)
+            </span>
+          </div>
           <span className="text-purple-accent">
             {Math.round(score.pp)}
           </span>
