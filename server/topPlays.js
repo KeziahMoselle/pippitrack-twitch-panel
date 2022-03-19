@@ -30,9 +30,7 @@ async function topPlays(request, reply) {
 
     console.log(`[${key}]: Fetched ${response.length} scores. (${response?.[0]?.user?.username})`)
 
-    redis.set(key, JSON.stringify(response), {
-      EX: 60 * 5 // 5 minutes cache
-    })
+    redis.set(key, JSON.stringify(response), 'EX', 60 * 5)
 
     return response
   } catch (error) {

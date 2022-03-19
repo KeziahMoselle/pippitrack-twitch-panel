@@ -32,9 +32,7 @@ async function recentScores(request, reply) {
 
     console.log(`[${key}]: Fetched ${response.length} scores. (${response?.[0]?.user?.username})`)
 
-    redis.set(key, JSON.stringify(response), {
-      EX: 15
-    })
+    redis.set(key, JSON.stringify(response), 'EX', 30)
 
     return response
   } catch (error) {
