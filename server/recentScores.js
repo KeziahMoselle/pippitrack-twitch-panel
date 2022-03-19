@@ -1,5 +1,5 @@
 const fastify = require('fastify')
-const { v2 } = require('osu-api-extended')
+const { v2, auth } = require('osu-api-extended')
 const redis = require('./redis')
 
 
@@ -22,7 +22,7 @@ async function recentScores(request, reply) {
       return JSON.parse(cached)
     }
 
-    const res = await v2.login(process.env.OSU_CLIENT_ID, process.env.OSU_CLIENT_SECRET)
+    await auth.login(process.env.OSU_CLIENT_ID, process.env.OSU_CLIENT_SECRET)
 
     const response = await v2.scores.users.recent(id, {
       mode: mode || 'osu',
