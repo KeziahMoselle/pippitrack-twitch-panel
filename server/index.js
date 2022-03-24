@@ -4,6 +4,7 @@ const fastify = require('fastify')
 const topPlays = require('./topPlays')
 const fastifyCors = require('fastify-cors')
 const recentScores = require('./recentScores')
+const pinnedScores = require('./pinnedScores')
 
 class Api {
 
@@ -37,6 +38,18 @@ class Api {
         }
       },
       handler: topPlays
+    })
+    this.server.route({
+      method: 'GET',
+      url: '/v1/pinned_scores',
+      schema: {
+        querystring: {
+          id: { type: 'string' },
+          mode: { type: 'string' },
+          best_limit: { type: 'number' },
+        }
+      },
+      handler: pinnedScores
     })
     this.server.route({
       method: 'GET',

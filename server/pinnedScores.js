@@ -3,21 +3,21 @@ const { v2, auth } = require('osu-api-extended')
 const countRequests = require('./libs/countRequests')
 const redis = require('./redis')
 
-// Cache expires in 5 minutes
-const EX = 60 * 5
+// Cache expires in 1 hour
+const EX = 3600
 
 /**
- * Send top plays
+ * Send pinned scores
  *
  * @param {fastify.FastifyRequest} request
  * @param {fastify.FastifyReply} reply
  * @return {*}
  */
-async function topPlays(request, reply) {
+async function pinnedScores(request, reply) {
   try {
-    const { id, mode = 'osu', best_limit = 15 } = request.query
+    const { id, mode = 'osu', pinned_limit = 10 } = request.query
 
-    const key = `topPlays:${id}:${mode}:${best_limit}`
+    const key = `pinnedScores:${id}:${mode}:${pinned_limit}`
 
     const cached = await redis.get(key)
 
@@ -28,9 +28,9 @@ async function topPlays(request, reply) {
     await auth.login(process.env.OSU_CLIENT_ID, process.env.OSU_CLIENT_SECRET)
 
     countRequests()
-    const response = await v2.scores.users.best(id, {
+    const response = await v2.scores.users.pinned(id, {
       mode: mode,
-      limit: Number(best_limit),
+      limit: Number(pinned_limit)
     })
 
     console.log(`[${key}]: Fetched ${response.length} scores. (${response?.[0]?.user?.username})`)
@@ -46,4 +46,4 @@ async function topPlays(request, reply) {
   }
 }
 
-module.exports = topPlays
+module.exports = pinnedScores

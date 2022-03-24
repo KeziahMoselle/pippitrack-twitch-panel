@@ -1,7 +1,10 @@
 const fastify = require('fastify')
 const { v2, auth } = require('osu-api-extended')
+const countRequests = require('./libs/countRequests')
 const redis = require('./redis')
 
+// Cache expires in 30 seconds
+const EX = 30
 
 /**
  * Send recent scores
@@ -12,7 +15,7 @@ const redis = require('./redis')
  */
 async function recentScores(request, reply) {
   try {
-    const { id, mode, recent_limit = 15 } = request.query
+    const { id, mode = 'osu', recent_limit = 15 } = request.query
 
     const key = `recentScores:${id}:${mode}:${recent_limit}`
 
@@ -24,15 +27,16 @@ async function recentScores(request, reply) {
 
     await auth.login(process.env.OSU_CLIENT_ID, process.env.OSU_CLIENT_SECRET)
 
+    countRequests()
     const response = await v2.scores.users.recent(id, {
-      mode: mode || 'osu',
-      limit: Number(recent_limit) || 15,
+      mode: mode,
+      limit: Number(recent_limit),
       include_fails: '1',
     })
 
     console.log(`[${key}]: Fetched ${response.length} scores. (${response?.[0]?.user?.username})`)
 
-    redis.set(key, JSON.stringify(response), 'EX', 30)
+    redis.set(key, JSON.stringify(response), 'EX', EX)
 
     return response
   } catch (error) {
