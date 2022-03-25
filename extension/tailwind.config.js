@@ -20,6 +20,9 @@ module.exports = {
       },
       yellow: {
         DEFAULT: '#ea0'
+      },
+      blue: {
+        DEFAULT: '#4aacd4',
       }
     },
     extend: {

@@ -52,22 +52,30 @@ body::-webkit-scrollbar-thumb {
   display: flex;
 }
 
-[data-reach-tab] {
+.tab {
   flex: 1;
   border: none;
   background: transparent;
   color: white;
   font-weight: 700;
   box-shadow: 0 4px 2px -2px transparent;
-  @apply transition-all ease-out-cubic py-2;
+  @apply transition-all ease-out-cubic py-2 flex flex-col gap-y-1 items-center uppercase;
 }
 
-[data-reach-tab][aria-selected="true"] {
+.tab[aria-selected="true"] {
   box-shadow: 0 4px 2px -2px theme('colors.purple.DEFAULT');
 }
 
-[data-reach-tab-panels] {
-  @apply py-8 px-4;
+.tab--secondary {
+  flex: 1;
+  border: none;
+  color: white;
+  box-shadow: 0 4px 2px -2px transparent;
+  @apply transition-all ease-out-cubic py-2 flex flex-col gap-y-1 items-center uppercase;
+}
+
+.tab--secondary[aria-selected="true"] {
+  box-shadow: 0 4px 2px -2px theme('colors.blue.DEFAULT');
 }
 
 [data-reach-tooltip] {

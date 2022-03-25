@@ -48,28 +48,28 @@ function App() {
     <div className="app">
       <Tabs index={tabIndex} onChange={handleTabsChange}>
         <TabList className="text-xxs">
-          <Tab className="flex flex-col gap-y-1 items-center uppercase">
+          <Tab className="tab">
             <FiHeart className="h-5 w-5" fill={`${tabIndex === 0 ? '#FFFFFF': ''}`} />
             Pinned
           </Tab>
-          <Tab className="flex flex-col gap-y-1 items-center uppercase">
+          <Tab className="tab">
             <FiAward className="h-5 w-5" fill={`${tabIndex === 1 ? '#FFFFFF': ''}`} />
             Best
           </Tab>
-          <Tab className="flex flex-col gap-y-1 items-center uppercase">
+          <Tab className="tab">
             <FiClock className="h-5 w-5" fill={`${tabIndex === 2 ? '#FFFFFF': ''}`} />
             Recent
           </Tab>
         </TabList>
 
         <TabPanels>
-          <TabPanel>
+          <TabPanel className="py-8 px-4">
             <PinnedScores config={config}/>
           </TabPanel>
           <TabPanel>
             <BestPerformance config={config}/>
           </TabPanel>
-          <TabPanel>
+          <TabPanel className="py-8 px-4">
             <RecentScores config={config}/>
           </TabPanel>
         </TabPanels>

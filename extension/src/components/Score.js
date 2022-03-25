@@ -80,9 +80,9 @@ export default function Score({ score }) {
             <span className="text-yellow">
               {score.beatmap.version}
             </span>
-            <div className="inline text-xs bg-black rounded-lg px-2">
+            <span className="inline text-xs bg-black rounded-lg px-2">
               {score.beatmap.difficulty_rating}⭐
-            </div>
+            </span>
           </p>
         </div>
       </div>
