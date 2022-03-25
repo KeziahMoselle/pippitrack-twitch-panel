@@ -1,5 +1,4 @@
 import * as timeago from 'timeago.js'
-import "@reach/tooltip/styles.css";
 
 import F from '../assets/F.png'
 import D from '../assets/D.png'
