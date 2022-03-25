@@ -15,7 +15,7 @@ const EX = 3600
  */
 async function pinnedScores(request, reply) {
   try {
-    const { id, mode = 'osu', pinned_limit = 10 } = request.query
+    const { id, mode = 'osu', pinned_limit = 50 } = request.query
 
     const key = `pinnedScores:${id}:${mode}:${pinned_limit}`
 

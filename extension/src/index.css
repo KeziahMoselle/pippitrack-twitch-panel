@@ -54,13 +54,12 @@ body::-webkit-scrollbar-thumb {
 
 [data-reach-tab] {
   flex: 1;
-  padding: 1rem;
   border: none;
   background: transparent;
   color: white;
   font-weight: 700;
   box-shadow: 0 4px 2px -2px transparent;
-  @apply transition-all ease-out-cubic;
+  @apply transition-all ease-out-cubic py-2;
 }
 
 [data-reach-tab][aria-selected="true"] {
@@ -69,4 +68,12 @@ body::-webkit-scrollbar-thumb {
 
 [data-reach-tab-panels] {
   @apply py-8 px-4;
+}
+
+[data-reach-tooltip] {
+  @apply z-goku;
+}
+
+svg {
+  @apply transition-all ease-out-cubic duration-300;
 }

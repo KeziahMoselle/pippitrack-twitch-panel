@@ -11,8 +11,7 @@ form.addEventListener('submit', (event) => {
   const data = new FormData(form)
 
   if (!data.get('id')) {
-    message.innerText = 'Please fill your osu! id.'
-    return
+    return updateMessage('Please fill your osu! id.')
   }
 
   saveConfig({
@@ -22,7 +21,7 @@ form.addEventListener('submit', (event) => {
     recent_limit: data.get('recent_limit'),
   })
 
-  message.innerHTML = 'Saved! You can now close this tab.'
+  updateMessage('Saved! You can now close this tab.')
 })
 
 window.Twitch.ext.configuration.onChanged(() => {
@@ -46,4 +45,12 @@ window.Twitch.ext.configuration.onChanged(() => {
 
 function saveConfig(data) {
   window.Twitch.ext.configuration.set('broadcaster', '1', JSON.stringify(data));
+}
+
+function updateMessage(value) {
+  message.innerHTML = value
+
+  setTimeout(() => {
+    message.innerHTML = ''
+  }, 2000);
 }

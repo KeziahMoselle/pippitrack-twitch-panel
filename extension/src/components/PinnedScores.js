@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { refreshIntervalBestPerformance } from '../constants'
+import { refreshIntervalPinnedScores } from '../constants'
 import usePercent from '../hooks/usePercent'
 import { fetcher } from '../libs/axios'
 import Loading from './Loading'
@@ -8,14 +8,14 @@ import Score from './Score'
 
 export default function BestPerformance({ config }) {
   const qs = new URLSearchParams(config)
-  const { data: bestPerformance, isValidating, mutate } = useSWR(
-    `v1/top_plays?${qs}`,
+  const { data: pinnedScores, isValidating, mutate } = useSWR(
+    `v1/pinned_scores?${qs}`,
     fetcher, {
-      refreshInterval: refreshIntervalBestPerformance,
+      refreshInterval: refreshIntervalPinnedScores,
       revalidateOnFocus: false
     }
   )
-  const { percent } = usePercent(60 * 5, mutate)
+  const { percent } = usePercent(60 * 60, mutate)
 
   return (
     <div className="flex flex-col gap-y-1">
@@ -25,12 +25,12 @@ export default function BestPerformance({ config }) {
         <Loading />
       )}
 
-      {bestPerformance?.length === 0 && (
-        <div>No top play found.</div>
+      {pinnedScores?.length === 0 && (
+        <div>No pinned scores yet.</div>
       )}
 
-      {bestPerformance?.length > 0 && bestPerformance.map(performance => (
-        <Score key={`bestPerformance:${performance.id}`} score={performance} />
+      {pinnedScores?.length > 0 && pinnedScores.map(score => (
+        <Score key={`pinnedScores:${score.id}`} score={score} />
       ))}
     </div>
   )

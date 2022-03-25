@@ -25,9 +25,14 @@ module.exports = {
     extend: {
       zIndex: {
         under: '-1',
+        goku: '9999',
       },
       fontSize: {
+        xxxs: '8px',
         xxs: '10px'
+      },
+      margin: {
+        small: '2px',
       }
     },
   },

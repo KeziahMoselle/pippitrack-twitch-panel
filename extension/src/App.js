@@ -2,9 +2,12 @@ import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
 import { useEffect, useState } from "react";
 import BestPerformance from "./components/BestPerformance";
 import RecentScores from "./components/RecentScores";
+import PinnedScores from './components/PinnedScores'
 import getConfig from "./libs/getConfig";
+import { FiClock, FiAward, FiHeart } from 'react-icons/fi'
 
 function App() {
+  const [tabIndex, setTabIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true)
   const [config, setConfig] = useState(null)
 
@@ -23,6 +26,10 @@ function App() {
     }
   }
 
+  function handleTabsChange(index) {
+    setTabIndex(index);
+  };
+
   if (!config || isLoading) {
     return (
       <div className="flex justify-center">
@@ -39,13 +46,26 @@ function App() {
 
   return (
     <div className="app">
-      <Tabs>
-        <TabList className="text-xs">
-          <Tab className="uppercase">Best Performance</Tab>
-          <Tab className="uppercase">Recent scores</Tab>
+      <Tabs index={tabIndex} onChange={handleTabsChange}>
+        <TabList className="text-xxs">
+          <Tab className="flex flex-col gap-y-1 items-center uppercase">
+            <FiHeart className="h-5 w-5" fill={`${tabIndex === 0 ? '#FFFFFF': ''}`} />
+            Pinned
+          </Tab>
+          <Tab className="flex flex-col gap-y-1 items-center uppercase">
+            <FiAward className="h-5 w-5" fill={`${tabIndex === 1 ? '#FFFFFF': ''}`} />
+            Best
+          </Tab>
+          <Tab className="flex flex-col gap-y-1 items-center uppercase">
+            <FiClock className="h-5 w-5" fill={`${tabIndex === 2 ? '#FFFFFF': ''}`} />
+            Recent
+          </Tab>
         </TabList>
 
         <TabPanels>
+          <TabPanel>
+            <PinnedScores config={config}/>
+          </TabPanel>
           <TabPanel>
             <BestPerformance config={config}/>
           </TabPanel>

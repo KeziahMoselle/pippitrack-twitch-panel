@@ -1,4 +1,6 @@
 import * as timeago from 'timeago.js'
+import "@reach/tooltip/styles.css";
+
 import F from '../assets/F.png'
 import D from '../assets/D.png'
 import C from '../assets/C.png'
@@ -20,6 +22,8 @@ import NF from '../assets/NF.png'
 import PF from '../assets/PF.png'
 import SD from '../assets/SD.png'
 import SO from '../assets/SO.png'
+
+import missIcon from '../assets/miss.png'
 
 const RANK_IMAGES = {
   F,
@@ -53,6 +57,7 @@ export default function Score({ score }) {
       href={`https://osu.ppy.sh/beatmapsets/${score.beatmapset.id}#${score.mode}/${score.beatmap.id}`}
       target="_blank"
       rel="noreferrer noopener"
+      title={`Score set ${timeago.format(score.created_at)}`}
       className="
         flex flex-col relative overflow-hidden
         px-4 py-3 bg-black rounded-xl
@@ -76,13 +81,19 @@ export default function Score({ score }) {
             <span className="text-yellow">
               {score.beatmap.version}
             </span>
-            <time className="text-black-light ml-4">{ timeago.format(score.created_at) }</time>
+            <div className="inline text-xs bg-black rounded-lg px-2">
+              {score.beatmap.difficulty_rating}⭐
+            </div>
           </p>
         </div>
       </div>
 
       <div className="flex justify-between items-center font-bold">
         <div className="flex">
+          {score.mods.length === 0 && (
+            <span className="text-sm">NM</span>
+          )}
+
           {/* Splicing here is to avoid too many mods icons (no overflow) */}
           {[...score.mods].splice(0, 4).map(mod => (
             <img
@@ -94,11 +105,23 @@ export default function Score({ score }) {
           ))}
         </div>
         <div className="flex items-end">
-          <div className="flex items-center text-xxs">
-            <span className="mr-1">{score.max_combo}x</span>
-            <span className="mr-2 text-white text-opacity-60">
-              ({ Number(score.accuracy * 100).toPrecision(4) }%)
-            </span>
+          <div className="flex flex-col items-end mr-2">
+            <div className="flex items-center text-xxs">
+              {score.statistics.count_miss > 0 && (
+                <div className="flex items-center text-xxs mr-1">
+                  <span>{score.statistics.count_miss}</span>
+                  <img className="w-2 h-2 ml-small" src={missIcon} alt="miss" />
+                </div>
+              )}
+
+              <span className={`${score.perfect ? 'text-yellow' : ''}`}>
+                {score.max_combo}x
+              </span>
+
+              <span className="text-white text-opacity-60 text-xxs ml-1">
+                ({ Number(score.accuracy * 100).toPrecision(4) }%)
+              </span>
+            </div>
           </div>
           <span className="text-purple-accent">
             {Math.round(score.pp)}
