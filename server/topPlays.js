@@ -3,8 +3,8 @@ const { v2, auth } = require('osu-api-extended')
 const countRequests = require('./libs/countRequests')
 const redis = require('./redis')
 
-// Cache expires in 5 minutes
-const EX = 60 * 5
+// Cache expires in 20 minutes
+const EX = 60 * 20
 
 /**
  * Send top plays

@@ -24,14 +24,25 @@
         </select>
         <label for="best_limit">Best performance limit</label>
         <select name="best_limit" id="best_limit">
-          <option selected value="15">15</option>
+          <option value="5">5</option>
+          <option selected value="10">10</option>
+          <option value="15">15</option>
+          <option value="25">25</option>
           <option value="50">50</option>
+          <option value="75">75</option>
           <option value="100">100</option>
         </select>
+        <p class="small">
+          (100 is recommended for accurate recent tops but is more expensive)
+        </p>
         <label for="recent_limit">Recent scores limit</label>
         <select name="recent_limit" id="recent_limit">
-          <option selected value="15">15</option>
+          <option value="5">5</option>
+          <option selected value="10">10</option>
+          <option value="15">15</option>
+          <option value="25">25</option>
           <option value="50">50</option>
+          <option value="75">75</option>
           <option value="100">100</option>
         </select>
         <input type="submit" value="Save" />
@@ -39,11 +50,11 @@
       <p id="message"></p>
     </div>
 
-
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&display=swap");
 
-      html, body {
+      html,
+      body {
         height: 100%;
       }
 
@@ -56,7 +67,9 @@
         justify-content: center;
         align-items: center;
         margin: 0;
-        font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-family: "Exo 2", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+          "Helvetica Neue", sans-serif;
       }
 
       form {
@@ -71,7 +84,8 @@
         margin-bottom: 0.5rem;
       }
 
-      input, select {
+      input,
+      select {
         border: none;
         padding: 0.5rem 1rem;
         border-radius: 10px;
@@ -89,7 +103,7 @@
         background-color: #b3306b;
         color: white;
         border: none;
-        font-family: 'Exo 2';
+        font-family: "Exo 2";
         font-weight: 600;
         font-size: 18px;
         border-radius: 10px;
@@ -97,7 +111,7 @@
       }
 
       .accent {
-        color: #FF66AB;
+        color: #ff66ab;
       }
 
       .small {

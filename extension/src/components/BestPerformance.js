@@ -8,8 +8,10 @@ import Loading from './Loading'
 import ProgressBar from './ProgressBar'
 import Score from './Score'
 import { useState, useEffect } from 'react'
+import UpdatedAt from './UpdatedAt';
 
 export default function BestPerformance({ config }) {
+  const [updatedAt, setUpdatedAt] = useState(new Date())
   const qs = new URLSearchParams(config)
   const { data: bestPerformance, isValidating, mutate } = useSWR(
     `v1/top_plays?${qs}`,
@@ -19,7 +21,11 @@ export default function BestPerformance({ config }) {
     }
   )
   const [recentTops, setRecentTops] = useState([])
-  const { percent } = usePercent(60 * 5, mutate)
+  const { percent } = usePercent(60 * 20, mutate)
+
+  useEffect(() => {
+    setUpdatedAt(new Date())
+  }, [bestPerformance])
 
   useEffect(() => {
     if (bestPerformance && bestPerformance.length > 0) {
@@ -72,6 +78,8 @@ export default function BestPerformance({ config }) {
           </TabPanel>
         </TabPanels>
       </Tabs>
+
+      <UpdatedAt date={updatedAt} />
     </Fragment>
   )
 }
