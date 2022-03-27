@@ -7,7 +7,7 @@ import getConfig from "./libs/getConfig";
 import { FiClock, FiAward, FiHeart } from 'react-icons/fi'
 
 function App() {
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(1);
   const [isLoading, setIsLoading] = useState(true)
   const [config, setConfig] = useState(null)
 

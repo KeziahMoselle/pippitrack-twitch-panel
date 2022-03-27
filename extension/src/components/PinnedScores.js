@@ -26,7 +26,9 @@ export default function BestPerformance({ config }) {
       )}
 
       {pinnedScores?.length === 0 && (
-        <div>No pinned scores yet.</div>
+        <div className="text-center">
+          <p>No pinned scores yet.</p>
+        </div>
       )}
 
       {pinnedScores?.length > 0 && pinnedScores.map(score => (

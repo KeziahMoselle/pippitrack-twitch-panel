@@ -57,7 +57,9 @@ export default function BestPerformance({ config }) {
               )}
 
               {bestPerformance?.length === 0 && (
-                <div>No top play found.</div>
+                <div className="text-center">
+                  <p>Play the game!</p>
+                </div>
               )}
 
               {bestPerformance?.length > 0 && bestPerformance.map(performance => (
@@ -68,7 +70,9 @@ export default function BestPerformance({ config }) {
           <TabPanel className="py-8 px-4">
             <div className="flex flex-col gap-y-1">
               {recentTops?.length === 0 && (
-                <div>No top play found.</div>
+                <div className="text-center">
+                  <p>Play the game!</p>
+                </div>
               )}
 
               {recentTops?.length > 0 && recentTops.map(score => (
