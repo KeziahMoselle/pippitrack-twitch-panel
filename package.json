@@ -21,6 +21,6 @@
     "fastify": "^3.27.3",
     "fastify-cors": "^6.0.3",
     "ioredis": "^4.28.5",
-    "osu-api-extended": "^2.1.3"
+    "osu-api-extended": "^2.1.4"
   }
 }
