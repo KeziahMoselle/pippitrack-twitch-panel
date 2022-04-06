@@ -26,7 +26,7 @@ class Api {
   }
 
   routes () {
-    this.server.get('/', () => 'owo')
+    this.server.get('/', (request, reply) => reply.redirect(301, 'https://dashboard.twitch.tv/extensions/zqst1nq21s3rw0y29kgrza7zt8jux0'))
     this.server.route({
       method: 'GET',
       url: '/v1/top_plays',
