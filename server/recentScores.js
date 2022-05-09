@@ -14,6 +14,12 @@ const EX = 30
  * @return {*}
  */
 async function recentScores(request, reply) {
+  if (process.env.NODE_ENV !== 'development') {
+    if (!request.headers.origin === 'https://www.twitch.tv') {
+      return console.warn(`[api] origin "${request.headers.origin}" not allowed.`)
+    }
+  }
+
   try {
     const { id, mode = 'osu', recent_limit = 15 } = request.query
 
@@ -25,7 +31,11 @@ async function recentScores(request, reply) {
       return JSON.parse(cached)
     }
 
-    await auth.login(process.env.OSU_CLIENT_ID, process.env.OSU_CLIENT_SECRET)
+    const isLoggedIn = await auth.isLogin()
+    if (!isLoggedIn) {
+      await auth.login(process.env.OSU_CLIENT_ID, process.env.OSU_CLIENT_SECRET)
+      console.log('[osu!oauth] Logged in')
+    }
 
     countRequests()
     const response = await v2.scores.users.recent(id, {
