@@ -81,7 +81,7 @@ export default function Score({ score }) {
               {score.beatmap.version}
             </span>
             <span className="inline text-xs bg-black rounded-lg px-2">
-              {score.beatmap.difficulty_rating}⭐
+              {Number(score.beatmap.difficulty_rating).toFixed(2)}⭐
             </span>
           </p>
         </div>
